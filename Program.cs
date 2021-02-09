@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections; 
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace C_
+namespace CommercialController
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Battery battery = new Battery( 1, 4, "online", 60, 6, 5);
+            Console.WriteLine(battery);
         }
     }
 }

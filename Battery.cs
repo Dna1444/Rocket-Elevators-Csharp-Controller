@@ -15,7 +15,9 @@ namespace CommercialController
         public int amountOfFloors;
         public int amountOfBasements;
         public List<Column> columnList;
-        public List<CallButton> callButtonsList;
+        public List<LobbyCallButton> callButtonsList;
+        public int columnId = 1;
+        
 
 
         public Battery(int _id, int _amountOfColumns, string _status, int _amountOfFloors, int _amountOfBasements, int _amountOfElevatorPerColumn)
@@ -30,7 +32,7 @@ namespace CommercialController
             if (_amountOfBasements > 0)
             {
                 createBasementFloorRequestButtons(this.amountOfBasements);
-                createBasementColumn(this.amountOfBasements, _amountOfElevatorPerColumn);
+                createBasementColumn(_amountOfBasements, _amountOfElevatorPerColumn);
                 this.amountOfColumns --;
             }
             createFloorRequestButtons(this.amountOfFloors);
@@ -39,15 +41,21 @@ namespace CommercialController
 
         }
 
-        static void createBasementColumn(int amountOfBasements, int _amountOfElevatorPerColumn)
+        public void createBasementColumn(int _amountOfBasements, int _amountOfElevatorPerColumn)
         {
-            public List<int> servedFloors;
-            // int numBasement = amountOfBasements;
+            List<int> servedFloors = new List<int>();
+            // int numBasement = _amountOfBasements;
             int floor = -1;
-            for ( int i = 0; i < this.amountOfBasements; i++)
+            for ( int i = 0; i < _amountOfBasements; i++)
             {
-
+        
+                servedFloors.Add(floor);
+                floor --;
             }
+            
+            Column column = new Column(this.columnId, "online", this.amountOfBasements, _amountOfElevatorPerColumn, servedFloors, true);
+            columnList.Add(column);
+            this.columnId ++;
 
         }
 

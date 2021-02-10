@@ -124,40 +124,7 @@ namespace CommercialController
             }
         static void Main(string[] args)
         {
-           Senario4();
-        //    Battery battery = new Battery( 1, 4, "online", 60, 6, 5);
-        //    System.Console.WriteLine(battery.columnList[3].servedFloorsList[1]);
-
-
-
-            
-            //             Floors deserved:
-            // Column A: B6 to B1 + RC 
-            // Column B: 2 to 20 + RC 
-            // Column C: 21 to 40 + RC
-            // Column D: 41 to 60 + RC
-
-            // Scenario 1:
-            // Elevator B1 at 20th floor going to the 5th floor
-            // Elevator B2 at 3rd floor going to the 15th floor
-            // Elevator B3 at 13th floor going to RC
-            // Elevator B4 at 15th floor going to the 2nd floor
-            // Elevator B5 at 6th floor going to RC
-
-            // Someone at RC wants to go to the 20th floor.
-            // Elevator B5 is expected to be sent.
-
-
-           // System.Console.WriteLine(elevator.ID);    
-            //         Scenario 1:
-            // Elevator B1 at 20th floor going to the 5th floor
-            // Elevator B2 at 3rd floor going to the 15th floor
-            // Elevator B3 at 13th floor going to RC
-            // Elevator B4 at 15th floor going to the 2nd floor
-            // Elevator B5 at 6th floor going to RC
-
-            // Someone at RC wants to go to the 20th floor.
-            // Elevator B5 is expected to be sent.
+         Senario3();
 
         }
     }

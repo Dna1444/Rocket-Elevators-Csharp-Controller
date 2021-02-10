@@ -169,29 +169,18 @@ namespace CommercialController
             return bestElevatorInformation;
         }
 
+
+        // requestion my elevator
         public void requestElevator(int floor, string direction)
         {
+            System.Console.WriteLine("column {0}", this.ID);
             string going = "not";
             Elevator elevator = this.findElevator(floor, direction);
             //console.log(elevator)
             System.Console.WriteLine("elevator {0}", elevator.ID);
-            for(int i = 0; i < elevator.floorRequestList.Count; i++ )
-            {
-                System.Console.WriteLine(elevator.floorRequestList[i]);
-            }
             elevator.floorRequestList.Add(floor);
             elevator.sortFloorList(going);
-            for(int i = 0; i < elevator.floorRequestList.Count; i++ )
-            {
-                System.Console.WriteLine(elevator.floorRequestList[i]);
-            }
             elevator.move();
-            
-            if (elevator.floorRequestList.Contains(1))
-            {
-            
-                return;
-            }
             // else
             // {
             //     System.Console.WriteLine("is this runing?");

@@ -15,6 +15,8 @@ namespace CommercialController
         public List<int> floorRequestList;
         public string direction;
         public Door door;
+
+        // my contructor
         public Elevator(int _id, string _status, int _amountOfFloors, int _currentFloor)
         {
             this.ID = _id;
@@ -26,7 +28,9 @@ namespace CommercialController
             this.direction = "none";
             
         }
+        
 
+        // moving the elevator to the right floor
         public void move()
         {
             while (this.floorRequestList.Count != 0)
@@ -35,7 +39,7 @@ namespace CommercialController
                 this.status = "moving";
                 //console.log("elevator" + this.ID + " is moving")
                 System.Console.WriteLine("elevator {0} is moving", this.ID);
-                if (this.currentFloor < destination)
+                if (this.currentFloor < destination)  // if statement so if the elevator need to go up it will 
                 {
                     //console.log("elevator going up")
                     System.Console.WriteLine("elevator {0} is going up", this.ID);
@@ -63,39 +67,42 @@ namespace CommercialController
                 this.status = "idle";
                 this.direction = "null";
                 System.Console.WriteLine("elevator {0} is stopped", this.ID);
-                this.operateDoors();
+                this.operateDoors();  // operate door once finish moving
                 //console.log("elevator " + this.ID + " is stopped" )
                 this.floorRequestList.RemoveAt(0);
             
             }
         }
+
+        // my sorting list 
         public void sortFloorList(string going)
         {
-            
-            if (going == "lobby")
+            //using lobby to tell that the request is from lobby and change the way it sorted
+            if (going == "lobby") 
             {
                 if (this.direction == "Down")
                 {
-                    System.Console.WriteLine("normal sort");
+                    //System.Console.WriteLine("normal sort");
                     this.floorRequestList.Sort(); 
                 }
                 else
                 {
-                    System.Console.WriteLine("reverse sort");
+                    //System.Console.WriteLine("reverse sort");
                     this.floorRequestList.Sort();
                     this.floorRequestList.Reverse();
                 }
             }
-            else if (going == "not")
+            // not from lobby use this way of sorting
+            else if (going == "not")  
             {
                 if (this.direction == "Up")
                 {
-                    System.Console.WriteLine("normal sort");
+                    //System.Console.WriteLine("normal sort");
                     this.floorRequestList.Sort(); 
                 }
                 else
                 {
-                    System.Console.WriteLine("reverse sort");
+                    //System.Console.WriteLine("reverse sort");
                     this.floorRequestList.Sort();
                     this.floorRequestList.Reverse();
                 }
@@ -103,6 +110,8 @@ namespace CommercialController
         
         }
 
+
+        // a simple way to open and close doors
         public void operateDoors()
         {
 

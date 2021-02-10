@@ -89,18 +89,42 @@ namespace CommercialController
                 battery.columnList[3].elevatorsList[4].direction = "Down";
                 battery.columnList[3].elevatorsList[4].floorRequestList.Add(1);
 
-                for(int i = 0; i < battery.columnList[3].elevatorsList[4].floorRequestList.Count; i++ )
-            {
-                System.Console.WriteLine(battery.columnList[3].elevatorsList[4].floorRequestList[i]);
-            }
+            
                 
                 battery.columnList[3].requestElevator(51, "Down");
 
 
             }
+
+            public static void Senario4()
+            {
+                Battery battery = new Battery( 1, 4, "online", 60, 6, 5);
+                battery.columnList[0].elevatorsList[0].currentFloor = -4;
+                battery.columnList[0].elevatorsList[0].status = "idle";
+                battery.columnList[0].elevatorsList[1].currentFloor = 1;
+                battery.columnList[0].elevatorsList[1].status = "idle";
+                battery.columnList[0].elevatorsList[2].currentFloor = -3;
+                battery.columnList[0].elevatorsList[2].status = "moving";
+                battery.columnList[0].elevatorsList[2].direction = "Down";
+                battery.columnList[0].elevatorsList[2].floorRequestList.Add(-5);
+                battery.columnList[0].elevatorsList[3].currentFloor = -6;
+                battery.columnList[0].elevatorsList[3].status = "moving";
+                battery.columnList[0].elevatorsList[3].direction = "Up";
+                battery.columnList[0].elevatorsList[3].floorRequestList.Add(1);
+                battery.columnList[0].elevatorsList[4].currentFloor = -1;
+                battery.columnList[0].elevatorsList[4].status = "moving";
+                battery.columnList[0].elevatorsList[4].direction = "Down";
+                battery.columnList[0].elevatorsList[4].floorRequestList.Add(-6);
+
+            
+                
+                battery.columnList[0].requestElevator(-3, "Up");
+
+
+            }
         static void Main(string[] args)
         {
-           Senario3();
+           Senario4();
         //    Battery battery = new Battery( 1, 4, "online", 60, 6, 5);
         //    System.Console.WriteLine(battery.columnList[3].servedFloorsList[1]);
 

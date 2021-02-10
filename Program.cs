@@ -11,7 +11,9 @@ namespace CommercialController
         static void Main(string[] args)
         {
             Battery battery = new Battery( 1, 4, "online", 60, 6, 5);
-            Console.WriteLine(battery);
+
+            
+           // System.Console.WriteLine(elevator.ID);    
         }
     }
 }

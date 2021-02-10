@@ -9,7 +9,7 @@ namespace CommercialController
 {
     public class Battery
     {
-        private int ID;
+        public int ID;
         public int amountOfColumns;
         public string status;
         public int amountOfFloors;
@@ -72,6 +72,10 @@ namespace CommercialController
                 {
                     if(floor <= _amountOfFloors)
                     {
+                        if(floor != 1)
+                        {
+                            this.servedFloors.Add(1);
+                        }
                         this.servedFloors.Add(floor);
                         floor++;
                     }
@@ -129,12 +133,17 @@ namespace CommercialController
         // chosing the elevator for the request
         public void assignElevator(int _requestFloor, string direction)
         {
+            string going = "looby";
             Column column = this.findBestColumn(_requestFloor);
+            System.Console.WriteLine( "column {0}", column.ID);
             Elevator elevator = column.findElevator(1, direction);
+            System.Console.WriteLine("elevator {0}",elevator.ID);
+            //elevator.floorRequestList.Add(1);
+            //elevator.move();
             elevator.floorRequestList.Add(_requestFloor);
-            elevator.sortFloorList();
+            elevator.sortFloorList(going);
             elevator.move();
-            elevator.operateDoors();
+            
         }
     
 

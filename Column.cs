@@ -8,7 +8,7 @@ namespace CommercialController
 {
     public class Column
     {
-        private int ID;
+        public int ID;
         public string status;
         public int amountOfFloors;
         public int amountOfElevators;
@@ -72,24 +72,30 @@ namespace CommercialController
        // to find the best elevator for the request
            public  Elevator findElevator(int floor, string direction)
            {
+        
+                
                 BestElevatorInformation bestElevatorInformation = new BestElevatorInformation();
                 bestElevatorInformation.bestElevator=  null;
                 bestElevatorInformation.bestScore = 6;
                 bestElevatorInformation.referenceGap = 10000000;
                 // asking to go back to lobby
+                
                 if(floor == 1)
                 {
                   foreach (Elevator elevator in this.elevatorsList)
                     {
+                        //System.Console.WriteLine(elevator.currentFloor + "what floor it on");
                     
                 
-                        if (floor == elevator.currentFloor && elevator.status == "idle"){
+                        if (floor == elevator.currentFloor && elevator.status == "idle")
+                        {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(1, elevator, bestElevatorInformation, floor);
                         }
-                        else if (floor > elevator.currentFloor && elevator.direction == "up" && direction == elevator.direction)
+                        else if (floor > elevator.currentFloor && elevator.direction == "Up" )
                         {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(2, elevator, bestElevatorInformation, floor);
-                        }else if (floor < elevator.currentFloor && elevator.direction == "down" && direction == elevator.direction)
+                        }
+                        else if (floor < elevator.currentFloor && elevator.direction == "Down")
                         {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(2, elevator, bestElevatorInformation, floor);
                         }
@@ -115,11 +121,11 @@ namespace CommercialController
                         {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(1, elevator, bestElevatorInformation, floor);
                         }
-                        else if (floor > elevator.currentFloor && elevator.direction == "up" && direction == elevator.direction)
+                        else if (floor > elevator.currentFloor && elevator.direction == "Up" && direction == elevator.direction)
                         {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(2, elevator, bestElevatorInformation, floor);
                         }
-                        else if (floor < elevator.currentFloor && elevator.direction == "down" && direction == elevator.direction)
+                        else if (floor < elevator.currentFloor && elevator.direction == "Down" && direction == elevator.direction)
                         {
                             bestElevatorInformation = this.checkIfElevatorIsBetter(2, elevator, bestElevatorInformation, floor);
                         }
@@ -133,6 +139,7 @@ namespace CommercialController
                         }
                         
                     }
+                    //bestElevatorInformation.bestElevator.floorRequestList.Add(1);
                     return bestElevatorInformation.bestElevator;
                 }
             }
@@ -140,6 +147,7 @@ namespace CommercialController
         //checking witch elevator is better with the call BestElevatorInformation
         public BestElevatorInformation checkIfElevatorIsBetter(int scoreToCheck,Elevator newElevator, BestElevatorInformation bestElevatorInformation, int floor) 
         {
+            //System.Console.WriteLine(scoreToCheck + "the score i am getting");
             
             if (scoreToCheck < bestElevatorInformation.bestScore)
             {
@@ -159,6 +167,40 @@ namespace CommercialController
             }
                 
             return bestElevatorInformation;
+        }
+
+        public void requestElevator(int floor, string direction)
+        {
+            string going = "not";
+            Elevator elevator = this.findElevator(floor, direction);
+            //console.log(elevator)
+            System.Console.WriteLine("elevator {0}", elevator.ID);
+            for(int i = 0; i < elevator.floorRequestList.Count; i++ )
+            {
+                System.Console.WriteLine(elevator.floorRequestList[i]);
+            }
+            elevator.floorRequestList.Add(floor);
+            elevator.sortFloorList(going);
+            for(int i = 0; i < elevator.floorRequestList.Count; i++ )
+            {
+                System.Console.WriteLine(elevator.floorRequestList[i]);
+            }
+            elevator.move();
+            
+            if (elevator.floorRequestList.Contains(1))
+            {
+            
+                return;
+            }
+            // else
+            // {
+            //     System.Console.WriteLine("is this runing?");
+            //     elevator.floorRequestList.Add(1);
+            //     string going1 = "lobby";
+            //     elevator.sortFloorList(going1);
+            //     elevator.move();
+                
+            // }                      
         }
 
      

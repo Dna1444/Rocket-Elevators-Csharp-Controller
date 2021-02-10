@@ -59,34 +59,60 @@ namespace CommercialController
                         //console.log("elevator" + this.ID + " moving to floor" + this.currentFloor,)
                     }
                 }
+                
                 this.status = "idle";
                 this.direction = "null";
                 System.Console.WriteLine("elevator {0} is stopped", this.ID);
+                this.operateDoors();
                 //console.log("elevator " + this.ID + " is stopped" )
                 this.floorRequestList.RemoveAt(0);
             
             }
         }
-        public void sortFloorList()
+        public void sortFloorList(string going)
         {
-            if (this.direction == "up")
+            
+            if (going == "lobby")
             {
-                this.floorRequestList.Sort(); 
+                if (this.direction == "Down")
+                {
+                    System.Console.WriteLine("normal sort");
+                    this.floorRequestList.Sort(); 
+                }
+                else
+                {
+                    System.Console.WriteLine("reverse sort");
+                    this.floorRequestList.Sort();
+                    this.floorRequestList.Reverse();
+                }
             }
-            else
+            else if (going == "not")
             {
-                this.floorRequestList.Sort();
-                this.floorRequestList.Reverse();
+                if (this.direction == "Up")
+                {
+                    System.Console.WriteLine("normal sort");
+                    this.floorRequestList.Sort(); 
+                }
+                else
+                {
+                    System.Console.WriteLine("reverse sort");
+                    this.floorRequestList.Sort();
+                    this.floorRequestList.Reverse();
+                }
             }
+        
         }
 
         public void operateDoors()
         {
 
             this.door.status = "open";
+            System.Console.WriteLine("door is {0}", this.door.status);
             //console.log(this.door.status + "door")
             //console.log("please wait 5 seconds")
+            System.Console.WriteLine("please wait 5 seconds");
             this.door.status = "close";
+            System.Console.WriteLine("door is {0}", this.door.status);
             //console.log(this.door.status + "door")
         }
 

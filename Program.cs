@@ -124,7 +124,7 @@ namespace CommercialController
             }
         static void Main(string[] args)
         {
-         Senario3();
+         
 
         }
     }
